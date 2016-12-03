@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FactuurDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FactuurDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="debiteuren">
           <Key>
             <PropertyRef Name="ID" />
@@ -25,7 +25,7 @@
           </Key>
           <Property Name="Factuurnummer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Factuurdatum" Type="datetime" Nullable="false" />
-          <Property Name="Totaalbedrag" Type="money" />
+          <Property Name="Totaalbedrag" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="factuur_items">
           <Key>
@@ -41,7 +41,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naam" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Prijs" Type="money" />
+          <Property Name="Prijs" Type="decimal" Precision="18" Scale="2" />
           <Property Name="BTW" Type="int" />
           <Property Name="Korting" Type="int" />
         </EntityType>
@@ -83,8 +83,7 @@
             <End Role="factuur_items" EntitySet="factuur_items" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FactuurDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -108,7 +107,7 @@
           </Key>
           <Property Name="Factuurnummer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Factuurdatum" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Totaalbedrag" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Totaalbedrag" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="factuur_items" Relationship="Self.FK_factuur_items_ToFactuur" FromRole="facturen" ToRole="factuur_items" />
         </EntityType>
         <EntityType Name="factuur_items">
@@ -127,7 +126,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Prijs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Prijs" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="BTW" Type="Int32" />
           <Property Name="Korting" Type="Int32" />
           <NavigationProperty Name="factuur_items" Relationship="Self.FK_factuur_items_ToProduct" FromRole="producten" ToRole="factuur_items" />

@@ -22,7 +22,6 @@ namespace Factuur
     
         public int ID { get; set; }
         public string Naam { get; set; }
-        //[DisplayFormat(DataFormatString = )]
         public Nullable<decimal> Prijs { get; set; }
         public Nullable<int> BTW { get; set; }
         public Nullable<int> Korting { get; set; }

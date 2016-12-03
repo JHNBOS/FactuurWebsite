@@ -20,7 +20,7 @@
     </Key>
     <Property Name="Factuurnummer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Factuurdatum" Type="datetime" Nullable="false" />
-    <Property Name="Totaalbedrag" Type="money" />
+    <Property Name="Totaalbedrag" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="factuur_items">
     <Key>
@@ -36,7 +36,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naam" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Prijs" Type="money" />
+    <Property Name="Prijs" Type="decimal" Precision="18" Scale="2" />
     <Property Name="BTW" Type="int" />
     <Property Name="Korting" Type="int" />
   </EntityType>

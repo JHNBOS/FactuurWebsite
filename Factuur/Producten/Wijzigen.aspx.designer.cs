@@ -10,7 +10,7 @@
 namespace Factuur.Producten {
     
     
-    public partial class Aanmaken {
+    public partial class Wijzigen {
         
         /// <summary>
         /// CreateTable control.
@@ -94,12 +94,12 @@ namespace Factuur.Producten {
         protected global::System.Web.UI.WebControls.TextBox kortingBox;
         
         /// <summary>
-        /// CreateButton control.
+        /// SaveButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CreateButton;
+        protected global::System.Web.UI.WebControls.Button SaveButton;
     }
 }

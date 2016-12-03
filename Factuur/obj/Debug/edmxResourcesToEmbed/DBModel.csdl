@@ -20,7 +20,7 @@
     </Key>
     <Property Name="Factuurnummer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Factuurdatum" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Totaalbedrag" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Totaalbedrag" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="factuur_items" Relationship="Self.FK_factuur_items_ToFactuur" FromRole="facturen" ToRole="factuur_items" />
   </EntityType>
   <EntityType Name="factuur_items">
@@ -39,7 +39,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Prijs" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Prijs" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="BTW" Type="Int32" />
     <Property Name="Korting" Type="Int32" />
     <NavigationProperty Name="factuur_items" Relationship="Self.FK_factuur_items_ToProduct" FromRole="producten" ToRole="factuur_items" />

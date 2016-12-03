@@ -55,7 +55,7 @@ namespace Factuur.Producten
                     TableCell cell5 = new TableCell();
 
                     cell.Text = naam;
-                    cell1.Text = prijs.ToString();
+                    cell1.Text = String.Format("{0:C}", prijs);
                     cell2.Text = btw.ToString();
                     cell3.Text = korting.ToString();
                     cell4.Controls.Add(edit);

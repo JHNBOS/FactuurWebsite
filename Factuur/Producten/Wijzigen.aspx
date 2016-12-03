@@ -1,8 +1,8 @@
-﻿<%@ Page Title="Product aanmaken" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Aanmaken.aspx.cs" Inherits="Factuur.Producten.Aanmaken" %>
+﻿<%@ Page Title="Product wijzigen" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Wijzigen.aspx.cs" Inherits="Factuur.Producten.Wijzigen" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
-        <h2 style="text-align: center;">Product aanmaken</h2>
+        <h2 style="text-align: center;">Product wijzigen</h2>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
@@ -29,8 +29,8 @@
                     <asp:TableCell></asp:TableCell>
                     <asp:TableCell>
                         <br />
-                        <asp:Button ID="CreateButton" runat="server" CssClass="btn btn-primary" 
-                            Text="Aanmaken" Width="120" /></asp:TableCell>
+                        <asp:Button ID="SaveButton" runat="server" CssClass="btn btn-primary" 
+                            Text="Opslaan" Width="120" /></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
 
