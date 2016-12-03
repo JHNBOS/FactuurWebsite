@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FactuurDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="debiteuren">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Voornaam" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Achternaam" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefoon" Type="nvarchar" MaxLength="20" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Postcode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Plaats" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Land" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="facturen">
+    <Key>
+      <PropertyRef Name="Factuurnummer" />
+    </Key>
+    <Property Name="Factuurnummer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Factuurdatum" Type="datetime" Nullable="false" />
+    <Property Name="Totaalbedrag" Type="money" />
+  </EntityType>
+  <EntityType Name="factuur_items">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FactuurID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="producten">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naam" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prijs" Type="money" />
+    <Property Name="BTW" Type="int" />
+    <Property Name="Korting" Type="int" />
+  </EntityType>
+  <Association Name="FK_factuur_items_ToFactuur">
+    <End Role="facturen" Type="Self.facturen" Multiplicity="1" />
+    <End Role="factuur_items" Type="Self.factuur_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturen">
+        <PropertyRef Name="Factuurnummer" />
+      </Principal>
+      <Dependent Role="factuur_items">
+        <PropertyRef Name="FactuurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_factuur_items_ToProduct">
+    <End Role="producten" Type="Self.producten" Multiplicity="1" />
+    <End Role="factuur_items" Type="Self.factuur_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producten">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="factuur_items">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FactuurDBModelStoreContainer">
+    <EntitySet Name="debiteuren" EntityType="Self.debiteuren" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturen" EntityType="Self.facturen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="factuur_items" EntityType="Self.factuur_items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="producten" EntityType="Self.producten" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_factuur_items_ToFactuur" Association="Self.FK_factuur_items_ToFactuur">
+      <End Role="facturen" EntitySet="facturen" />
+      <End Role="factuur_items" EntitySet="factuur_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_factuur_items_ToProduct" Association="Self.FK_factuur_items_ToProduct">
+      <End Role="producten" EntitySet="producten" />
+      <End Role="factuur_items" EntitySet="factuur_items" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
