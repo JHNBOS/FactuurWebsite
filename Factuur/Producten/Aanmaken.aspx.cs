@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Factuur.Debiteuren
+namespace Factuur.Producten
 {
     public partial class Aanmaken : System.Web.UI.Page
     {
@@ -15,39 +15,32 @@ namespace Factuur.Debiteuren
         {
             //Event handlers
             CreateButton.Click += CreateButton_Click;
-
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            CreateDeb();
-
-            Response.Redirect("Debiteur.aspx");
+            CreateProduct();
+            Response.Redirect("Product.aspx");
         }
 
-        private void CreateDeb()
+        private void CreateProduct()
         {
-            debiteuren deb = new debiteuren();
+            producten product = new producten();
 
-            deb.Voornaam = voornaamBox.Text;
-            deb.Achternaam = achternaamBox.Text;
-            deb.Email = emailBox.Text;
-            deb.Telefoon = telefoonBox.Text;
-            deb.Adres = adresBox.Text;
-            deb.Postcode = postcodeBox.Text;
-            deb.Plaats = plaatsBox.Text;
-            deb.Land = landBox.Text;
+            product.Naam = naamBox.Text;
+            product.Prijs = decimal.Parse(prijsBox.Text);
+            product.BTW = int.Parse(btwBox.Text);
+            product.Korting = int.Parse(kortingBox.Text);
 
             try
             {
-                db.debiteuren.Add(deb);
+                db.producten.Add(product);
                 db.SaveChanges();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
-
         }
     }
 }
