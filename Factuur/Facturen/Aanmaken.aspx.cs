@@ -54,28 +54,83 @@ namespace Factuur.Facturen
 
         private void CreateFactuur()
         {
-            /*
-            debiteuren deb = new debiteuren();
+            facturen factuur = new facturen();
+            factuur.Factuurdatum = DateTime.Parse(datumBox.Text);
 
-            deb.Voornaam = voornaamBox.Text;
-            deb.Achternaam = achternaamBox.Text;
-            deb.Email = emailBox.Text;
-            deb.Telefoon = telefoonBox.Text;
-            deb.Adres = adresBox.Text;
-            deb.Postcode = postcodeBox.Text;
-            deb.Plaats = plaatsBox.Text;
-            deb.Land = landBox.Text;
+            //---------------------------------
+            //Debiteur
+            string debiteur = debDDL.SelectedValue;
+            string[] name = debiteur.Split(' ');
+            debiteuren deb = db.debiteuren.Where(d => d.Voornaam == name[0] && d.Achternaam == name[1]).SingleOrDefault();
+            factuur.Debiteur = deb.ID;
+
+            //---------------------------------
+            //Product
+            List<producten> proList = new List<producten>();
+            List<string> values = new List<string>();
+
+            foreach (ListItem Item in productCheckBoxList.Items)
+            {
+                if (Item.Selected)
+                {
+                    values.Add(Item.Value);
+                }
+            }
+
+            for (int i = 0; i < values.Count; i++)
+            {
+                producten p = db.producten.Where(pr => pr.Naam == values[i]).SingleOrDefault();
+                proList.Add(p);
+            }
+
+
+            //Totaalbedrag factuur
+            decimal total = 0;
+
+            for (int i = 0; i < proList.Count; i++)
+            {
+                total += (decimal) proList[i].Prijs;
+            }
+
+            factuur.Totaalbedrag = total;
+
+
+            //--------------------------------------
+            //Save factuur to database
 
             try
             {
-                db.debiteuren.Add(deb);
+                db.facturen.Add(factuur);
                 db.SaveChanges();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
-            */
+
+            //--------------------------------------
+
+            List<factuur_items> fiList = new List<factuur_items>();
+
+            for (int i = 0; i < proList.Count; i++)
+            {
+                factuur_items fi = new factuur_items();
+                fi.FactuurID = factuur.Factuurnummer;
+                fi.ProductID = proList[i].ID;
+
+                fiList.Add(fi);
+            }
+            
+
+            try
+            {
+                db.factuur_items.AddRange(fiList);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
         }
 
 
