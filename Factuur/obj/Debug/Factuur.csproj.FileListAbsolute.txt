@@ -127,5 +127,6 @@ C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.Google.xml
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.csprojResolveAssemblyReference.cache
 C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.dll
 C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.pdb

@@ -11,7 +11,7 @@ namespace Factuur
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class facturen
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,8 +23,10 @@ namespace Factuur
         public int Factuurnummer { get; set; }
         public System.DateTime Factuurdatum { get; set; }
         public Nullable<decimal> Totaalbedrag { get; set; }
+        public int Debiteur { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<factuur_items> factuur_items { get; set; }
+        public virtual debiteuren debiteuren { get; set; }
     }
 }

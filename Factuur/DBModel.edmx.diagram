@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="FactuurDBModel.producten" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="FactuurDBModel.FK_factuur_items_ToFactuur" ManuallyRouted="false" />
         <AssociationConnector Association="FactuurDBModel.FK_factuur_items_ToProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="FactuurDBModel.FK_facturen_ToDebiteur" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

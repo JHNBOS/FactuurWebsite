@@ -19,6 +19,7 @@
     <EntitySetMapping Name="facturen">
       <EntityTypeMapping TypeName="FactuurDBModel.facturen">
         <MappingFragment StoreEntitySet="facturen">
+          <ScalarProperty Name="Debiteur" ColumnName="Debiteur" />
           <ScalarProperty Name="Factuurnummer" ColumnName="Factuurnummer" />
           <ScalarProperty Name="Factuurdatum" ColumnName="Factuurdatum" />
           <ScalarProperty Name="Totaalbedrag" ColumnName="Totaalbedrag" />

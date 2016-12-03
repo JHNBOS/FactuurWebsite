@@ -193,6 +193,8 @@
     <Content Include="Debiteuren\Aanmaken.aspx" />
     <Content Include="Debiteuren\Debiteur.aspx" />
     <Content Include="Debiteuren\Wijzigen.aspx" />
+    <Content Include="Facturen\Aanmaken.aspx" />
+    <Content Include="Facturen\Factuur.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -428,6 +430,20 @@
     </Compile>
     <Compile Include="facturen.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Facturen\Aanmaken.aspx.cs">
+      <DependentUpon>Aanmaken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facturen\Aanmaken.aspx.designer.cs">
+      <DependentUpon>Aanmaken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facturen\Factuur.aspx.cs">
+      <DependentUpon>Factuur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facturen\Factuur.aspx.designer.cs">
+      <DependentUpon>Factuur.aspx</DependentUpon>
     </Compile>
     <Compile Include="factuur_items.cs">
       <DependentUpon>DBModel.tt</DependentUpon>

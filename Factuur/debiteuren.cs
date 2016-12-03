@@ -14,6 +14,12 @@ namespace Factuur
     
     public partial class debiteuren
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public debiteuren()
+        {
+            this.facturen = new HashSet<facturen>();
+        }
+    
         public int ID { get; set; }
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
@@ -23,5 +29,8 @@ namespace Factuur
         public string Postcode { get; set; }
         public string Plaats { get; set; }
         public string Land { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturen> facturen { get; set; }
     }
 }
