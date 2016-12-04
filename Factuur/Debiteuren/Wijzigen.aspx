@@ -7,7 +7,7 @@
         <div class="col-sm-10">
             <h3></h3>
 
-            <asp:Table ID="CreateTable" runat="server" GridLines="None" CssClass="table table-hover">
+            <asp:Table ID="EditTable" runat="server" GridLines="None" CssClass="table table-hover">
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label1" runat="server" Text="Voornaam" /></asp:TableCell>
                     <asp:TableCell><asp:TextBox ID="voornaamBox" runat="server" CssClass="form-control" /></asp:TableCell>

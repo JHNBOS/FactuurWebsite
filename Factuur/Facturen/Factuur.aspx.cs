@@ -43,11 +43,13 @@ namespace Factuur.Facturen
                     del.CssClass = "btn btn-warning btn-sm";
                     del.Click += Del_Click;
 
+                    /*
                     Button edit = new Button();
                     edit.ID = "edit_" + factuurlist[i].Factuurnummer.ToString();
                     edit.Text = "Wijzigen";
                     edit.CssClass = "btn btn-success btn-sm";
                     edit.Click += Edit_Click;
+                    */
 
                     Button show = new Button();
                     show.ID = "show_" + factuurlist[i].Factuurnummer.ToString();
@@ -61,15 +63,15 @@ namespace Factuur.Facturen
                     TableCell cell3 = new TableCell();
                     TableCell cell4 = new TableCell();
                     TableCell cell5 = new TableCell();
-                    TableCell cell6 = new TableCell();
+                    //TableCell cell6 = new TableCell();
 
                     cell.Text = fnummer;
                     cell1.Text = fdatum;
                     cell2.Text = totaal;
                     cell3.Text = debiteur;
                     cell4.Controls.Add(show);
-                    cell5.Controls.Add(edit);
-                    cell6.Controls.Add(del);
+                    cell5.Controls.Add(del);
+                    //cell6.Controls.Add(edit);
 
                     TableRow row = new TableRow();
 
@@ -79,7 +81,7 @@ namespace Factuur.Facturen
                     row.Cells.Add(cell3);
                     row.Cells.Add(cell4);
                     row.Cells.Add(cell5);
-                    row.Cells.Add(cell6);
+                    //row.Cells.Add(cell6);
 
                     factuurTable.Rows.Add(row);
                 }

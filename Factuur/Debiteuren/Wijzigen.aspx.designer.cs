@@ -13,13 +13,13 @@ namespace Factuur.Debiteuren {
     public partial class Wijzigen {
         
         /// <summary>
-        /// CreateTable control.
+        /// EditTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table CreateTable;
+        protected global::System.Web.UI.WebControls.Table EditTable;
         
         /// <summary>
         /// Label1 control.

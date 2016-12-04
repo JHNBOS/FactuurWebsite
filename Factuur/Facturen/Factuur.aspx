@@ -15,7 +15,7 @@
                     <asp:TableHeaderCell>Totaalbedrag</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Debiteur</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Inzien</asp:TableHeaderCell>
-                    <asp:TableHeaderCell>Wijzigen</asp:TableHeaderCell>
+                    <!--<asp:TableHeaderCell>Wijzigen</asp:TableHeaderCell>-->
                     <asp:TableHeaderCell>Verwijderen</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>

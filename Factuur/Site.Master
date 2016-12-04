@@ -53,6 +53,7 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/Debiteuren/Debiteur.aspx">Debiteuren</a></li>
                         <li><a runat="server" href="~/Producten/Product.aspx">Producten</a></li>
+                        <li><a runat="server" href="~/Facturen/Factuur.aspx">Facturen</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
