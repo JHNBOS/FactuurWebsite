@@ -40,6 +40,8 @@ namespace Factuur.Producten
                     del.Text = "Verwijder";
                     del.CssClass = "btn btn-warning btn-sm";
                     del.Click += Del_Click;
+                    del.OnClientClick = "Confirm()";
+
 
                     Button edit = new Button();
                     edit.ID = "edit_" + prodlist[i].ID.ToString();
