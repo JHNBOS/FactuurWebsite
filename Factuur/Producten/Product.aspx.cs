@@ -56,8 +56,8 @@ namespace Factuur.Producten
 
                     cell.Text = naam;
                     cell1.Text = String.Format("{0:C}", prijs);
-                    cell2.Text = btw.ToString();
-                    cell3.Text = korting.ToString();
+                    cell2.Text = String.Format("{0}%", btw);
+                    cell3.Text = String.Format("{0}%", korting);
                     cell4.Controls.Add(edit);
                     cell5.Controls.Add(del);
 
