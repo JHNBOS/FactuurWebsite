@@ -11,7 +11,7 @@
             <asp:Table ID="CreateTable" runat="server" GridLines="None" CssClass="table table-hover">
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label1" runat="server" Text="Factuurdatum" /></asp:TableCell>
-                    <asp:TableCell><asp:TextBox ID="datumBox" runat="server" TextMode="Date" CssClass="form-control" /></asp:TableCell>
+                    <asp:TableCell><asp:TextBox ID="datumBox" runat="server" TextMode="Date" Width="280" CssClass="form-control" /></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right">
@@ -29,7 +29,7 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label4" runat="server" Text="Totaalbedrag" /></asp:TableCell>
-                    <asp:TableCell><asp:TextBox ID="totaalBox" runat="server" CssClass="form-control" /></asp:TableCell>
+                    <asp:TableCell><asp:TextBox ID="totaalBox" runat="server" Width="280" CssClass="form-control" /></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell></asp:TableCell>

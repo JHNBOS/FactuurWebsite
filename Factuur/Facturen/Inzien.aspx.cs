@@ -66,7 +66,7 @@ namespace Factuur.Facturen
 
             for (int i = 0; i < productList.Count; i++)
             {
-                products += productList[i].Naam + "\n";
+                products += productList[i].Naam + "<br />";
             }
 
             cell4.Text = products;

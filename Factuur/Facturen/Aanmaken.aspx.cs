@@ -60,9 +60,14 @@ namespace Factuur.Facturen
             //---------------------------------
             //Debiteur
             string debiteur = debDDL.SelectedValue;
-            string[] name = debiteur.Split(' ');
+            string[] name = debiteur.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string fname = name[0];
-            string lname = name[1];
+            string lname = "";
+
+            for (int i = 1; i < name.Length; i++)
+            {
+                lname += name[i] + " ";
+            }
 
             debiteuren deb = db.debiteuren.Where(d => d.Voornaam == fname && d.Achternaam == lname).SingleOrDefault();
             factuur.Debiteur = deb.ID;
