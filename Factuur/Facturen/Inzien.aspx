@@ -8,6 +8,10 @@
         <div class="col-sm-10">
             <h3></h3>
 
+            <a href="Factuur.aspx" class="btn btn-link">Terug naar overzicht facturen</a>
+
+            <br />
+
             <asp:Table ID="factuurTable" runat="server" CellPadding="5" CellSpacing="5" CssClass="table table-striped" Width="100%">
                 <asp:TableHeaderRow HorizontalAlign="Center" VerticalAlign="Middle">
                     <asp:TableHeaderCell>Factuurnummer</asp:TableHeaderCell>

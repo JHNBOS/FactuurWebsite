@@ -8,6 +8,10 @@
         <div class="col-sm-10">
             <h3></h3>
 
+            <a href="Factuur.aspx" class="btn btn-link">Terug naar overzicht facturen</a>
+
+            <br />
+
             <asp:Table ID="EditTable" runat="server" GridLines="None" CssClass="table table-hover">
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label1" runat="server" Text="Factuurdatum" /></asp:TableCell>

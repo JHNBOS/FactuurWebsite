@@ -16,11 +16,17 @@ namespace Factuur.Facturen
             //Event handlers
             CreateButton.Click += CreateButton_Click;
 
-            //Execute methods
-            FillDDL();
-            FillCheckBoxList();
-        }
+            //Set current date to datumBox
+            datumBox.Text = String.Format("{0:yyyy-MM-dd}", DateTime.Now);
 
+            //Execute methods
+            if (!IsPostBack)
+            {
+                FillDDL();
+                FillCheckBoxList();
+            }
+            
+        }
 
         //Fill dropdownlist with debiteuren
         private void FillDDL()
@@ -150,6 +156,29 @@ namespace Factuur.Facturen
             Response.Redirect("Factuur.aspx");
         }
 
+        protected void productCheckBoxList_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            decimal total = 0;
+            List<string> values = new List<string>();
 
+            foreach (ListItem Item in productCheckBoxList.Items)
+            {
+                if (Item.Selected)
+                {
+                    values.Add(Item.Value);
+                }
+            }
+
+            for (int i = 0; i < values.Count; i++)
+            {
+                string j = values[i];
+                producten p = db.producten.Where(pr => pr.Naam == j).SingleOrDefault();
+
+                decimal price = (decimal)p.Prijs;
+                total += price;
+            }
+
+            totaalBox.Text = String.Format("{0:C}", total);
+        }
     }
 }

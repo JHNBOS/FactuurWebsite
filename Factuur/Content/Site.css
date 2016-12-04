@@ -45,3 +45,7 @@ input[type="select"] {
 #MainContent_CreateTable{
     width: 100% !important;
 }
+
+input[type="checkbox"]{
+    margin-right: 6px;
+}

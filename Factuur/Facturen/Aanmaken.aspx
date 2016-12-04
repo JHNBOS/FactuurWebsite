@@ -8,6 +8,10 @@
         <div class="col-sm-10">
             <h3></h3>
 
+            <a href="Factuur.aspx" class="btn btn-link">Terug naar overzicht facturen</a>
+
+            <br />
+
             <asp:Table ID="CreateTable" runat="server" GridLines="None" CssClass="table table-hover">
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label1" runat="server" Text="Factuurdatum" /></asp:TableCell>
@@ -24,7 +28,7 @@
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label3" runat="server" Text="Producten" /></asp:TableCell>
                     <asp:TableCell>
-                        <asp:CheckBoxList ID="productCheckBoxList" runat="server"></asp:CheckBoxList>
+                        <asp:CheckBoxList ID="productCheckBoxList" AutoPostBack="true" OnSelectedIndexChanged="productCheckBoxList_SelectedIndexChanged1" runat="server"></asp:CheckBoxList>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
