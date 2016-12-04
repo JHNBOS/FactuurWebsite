@@ -100,12 +100,46 @@ namespace Factuur.Producten
             string[] split = id.Split('_');
             int ID = int.Parse(split[1]);
 
-            producten prod = db.producten.Where(d => d.ID == ID).SingleOrDefault();
+            string confirmValue = Request.Form["confirm_value"];
 
-            db.producten.Remove(prod);
-            db.SaveChanges();
+            if (confirmValue == "Ja")
+            {
+                try
+                {
+                    producten prod = db.producten.Where(d => d.ID == ID).SingleOrDefault();
+                    List<factuur_items> fiList = db.factuur_items.Where(f => f.ProductID == prod.ID).ToList();
+                    List<facturen> factuurList = new List<facturen>();
 
-            Response.Redirect(Request.RawUrl);
+                    for (int i = 0; i < fiList.Count; i++)
+                    {
+                        int fid = fiList[i].FactuurID;
+
+                        facturen fact = db.facturen.Find(fid);
+                        factuurList.Add(fact);
+                    }
+
+                    db.factuur_items.RemoveRange(fiList);
+                    db.facturen.RemoveRange(factuurList);
+                    db.producten.Remove(prod);
+                    db.SaveChanges();
+
+                    Message m = new Message();
+                    m.Show("Product is verwijderd!");
+
+                    Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
+                    Message m = new Message();
+                    m.Show("Product kon niet worden verwijderd!");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                }
+            }
+            else
+            {
+                Response.Redirect(Request.RawUrl);
+            }
+
         }
 
 

@@ -125,15 +125,36 @@ namespace Factuur.Facturen
             string[] split = id.Split('_');
             int ID = int.Parse(split[1]);
 
-            facturen fact = db.facturen.Where(d => d.Factuurnummer == ID).SingleOrDefault();
+            string confirmValue = Request.Form["confirm_value"];
 
-            List<factuur_items> itemList = db.factuur_items.Where(f => f.FactuurID == ID).ToList();
+            if (confirmValue == "Ja")
+            {
+                try
+                {
+                    facturen fact = db.facturen.Where(d => d.Factuurnummer == ID).SingleOrDefault();
 
-            db.factuur_items.RemoveRange(itemList);
-            db.facturen.Remove(fact);
-            db.SaveChanges();
+                    List<factuur_items> itemList = db.factuur_items.Where(f => f.FactuurID == ID).ToList();
 
-            Response.Redirect(Request.RawUrl);
+                    db.factuur_items.RemoveRange(itemList);
+                    db.facturen.Remove(fact);
+                    db.SaveChanges();
+
+                    Message m = new Message();
+                    m.Show("Factuur is verwijderd!");
+
+                    Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
+                    Message m = new Message();
+                    m.Show("Factuur kon niet worden verwijderd!");
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                }
+            }
+            else
+            {
+                Response.Redirect(Request.RawUrl);
+            }
         }
 
         private void CreateButton_Click(object sender, EventArgs e)

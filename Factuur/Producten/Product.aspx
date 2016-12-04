@@ -1,4 +1,21 @@
 ﻿<%@ Page Title="Producten" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Factuur.Producten.Product" %>
+
+<asp:Content ContentPlaceHolderID="HeadContent" ID="HContent" runat="server">
+    <script type = "text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Wilt u dit product en alle bijbehorende facturen verwijderen?")) {
+                confirm_value.value = "Ja";
+            } else {
+                confirm_value.value = "Nee";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">

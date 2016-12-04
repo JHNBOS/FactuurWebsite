@@ -36,9 +36,14 @@ namespace Factuur.Producten
             {
                 db.producten.Add(product);
                 db.SaveChanges();
+
+                Message m = new Message();
+                m.Show("Product is aangemaakt!");
             }
             catch (Exception ex)
             {
+                Message m = new Message();
+                m.Show("Product kon niet worden aangemaakt!");
                 System.Diagnostics.Debug.WriteLine(ex);
             }
         }

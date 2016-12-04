@@ -117,9 +117,14 @@ namespace Factuur.Facturen
             {
                 db.facturen.Add(factuur);
                 db.SaveChanges();
+
+                Message m = new Message();
+                m.Show("Factuur is aangemaakt!");
             }
             catch (Exception ex)
             {
+                Message m = new Message();
+                m.Show("Factuur kon niet worden aangemaakt!");
                 System.Diagnostics.Debug.WriteLine(ex);
             }
 

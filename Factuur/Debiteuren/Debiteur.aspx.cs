@@ -126,12 +126,38 @@ namespace Factuur
             string[] split = id.Split('_');
             int ID = int.Parse(split[1]);
 
-            debiteuren deb=  db.debiteuren.Where(d => d.ID == ID).SingleOrDefault();
+            string confirmValue = Request.Form["confirm_value"];
 
-            db.debiteuren.Remove(deb);
-            db.SaveChanges();
+            if (confirmValue == "Ja")
+            {
+                try
+                {
+                    debiteuren deb = db.debiteuren.Where(d => d.ID == ID).SingleOrDefault();
+                    List<facturen> fList = db.facturen.Where(fa => fa.Debiteur == ID).ToList();
+                    List<factuur_items> fiList = db.factuur_items.Where(f => f.facturen.Debiteur == ID).ToList();
 
-            Response.Redirect(Request.RawUrl);
+                    db.factuur_items.RemoveRange(fiList);
+                    db.facturen.RemoveRange(fList);
+                    db.debiteuren.Remove(deb);
+                    db.SaveChanges();
+
+                    Message m = new Message();
+                    m.Show("Debiteur is verwijderd!");
+
+                    Response.Redirect(Request.RawUrl);
+
+                }
+                catch (Exception ex)
+                {
+                    Message m = new Message();
+                    m.Show("Debiteur kon niet worden verwijderd!");
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
+            }
+            else
+            {
+                Response.Redirect(Request.RawUrl);
+            }
         }
 
 
