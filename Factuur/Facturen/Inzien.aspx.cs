@@ -59,7 +59,7 @@ namespace Factuur.Facturen
 
             cell.Text = factuur.Factuurnummer.ToString();
             cell1.Text = String.Format("{0:dd-MM-yyyy}", factuur.Factuurdatum);
-            cell2.Text = factuur.Totaalbedrag.ToString();
+            cell2.Text = String.Format("{0:C}", factuur.Totaalbedrag);
             cell3.Text = deb.Voornaam + " " + deb.Achternaam;
 
             string products = "";
