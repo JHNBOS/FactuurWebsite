@@ -22,8 +22,6 @@
                     <asp:TableHeaderCell>Verwijderen</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
-
-            <br />
             <asp:Button ID="CreateButton" runat="server" Text="Aanmaken" CssClass="btn btn-primary" />
         </div>
         <div class="col-sm-1"></div>
