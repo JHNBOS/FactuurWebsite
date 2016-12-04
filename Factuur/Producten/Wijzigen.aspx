@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
-        <h2 style="text-align: center;">Product wijzigen</h2>
+        <h1 style="text-align: center;">Product wijzigen</h1>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">

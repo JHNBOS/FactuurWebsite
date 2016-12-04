@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Debiteur wijzigen" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Wijzigen.aspx.cs" Inherits="Factuur.Debiteuren.Wijzigen" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <div class="container">
-        <h2 style="text-align: center;">Debiteur wijzigen</h2>
+        <h1 style="text-align: center;">Debiteur wijzigen</h1>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
@@ -58,4 +59,5 @@
         <div class="col-sm-1"></div>
     </div>
 </div>
+
 </asp:Content>
