@@ -61,7 +61,10 @@ namespace Factuur.Facturen
             //Debiteur
             string debiteur = debDDL.SelectedValue;
             string[] name = debiteur.Split(' ');
-            debiteuren deb = db.debiteuren.Where(d => d.Voornaam == name[0] && d.Achternaam == name[1]).SingleOrDefault();
+            string fname = name[0];
+            string lname = name[1];
+
+            debiteuren deb = db.debiteuren.Where(d => d.Voornaam == fname && d.Achternaam == lname).SingleOrDefault();
             factuur.Debiteur = deb.ID;
 
             //---------------------------------
@@ -79,7 +82,8 @@ namespace Factuur.Facturen
 
             for (int i = 0; i < values.Count; i++)
             {
-                producten p = db.producten.Where(pr => pr.Naam == values[i]).SingleOrDefault();
+                string j = values[i];
+                producten p = db.producten.Where(pr => pr.Naam == j).SingleOrDefault();
                 proList.Add(p);
             }
 

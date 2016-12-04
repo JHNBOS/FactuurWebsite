@@ -30,7 +30,7 @@ namespace Factuur.Facturen
                 for (int i = 0; i < factuurlist.Count; i++)
                 {
                     string fnummer = factuurlist[i].Factuurnummer.ToString();
-                    string fdatum = String.Format("dd-MM-yyyy", factuurlist[i].Factuurdatum);
+                    string fdatum = String.Format("{0:dd-MM-yyyy}", factuurlist[i].Factuurdatum);
                     string totaal = String.Format("{0:C}", factuurlist[i].Totaalbedrag);
 
                     debiteuren deb = db.debiteuren.Find(factuurlist[i].Debiteur);
@@ -49,19 +49,27 @@ namespace Factuur.Facturen
                     edit.CssClass = "btn btn-success btn-sm";
                     edit.Click += Edit_Click;
 
+                    Button show = new Button();
+                    show.ID = "show_" + factuurlist[i].Factuurnummer.ToString();
+                    show.Text = "Inzien";
+                    show.CssClass = "btn btn-info btn-sm";
+                    show.Click += Show_Click;
+
                     TableCell cell = new TableCell();
                     TableCell cell1 = new TableCell();
                     TableCell cell2 = new TableCell();
                     TableCell cell3 = new TableCell();
                     TableCell cell4 = new TableCell();
                     TableCell cell5 = new TableCell();
+                    TableCell cell6 = new TableCell();
 
                     cell.Text = fnummer;
                     cell1.Text = fdatum;
                     cell2.Text = totaal;
                     cell3.Text = debiteur;
-                    cell4.Controls.Add(edit);
-                    cell5.Controls.Add(del);
+                    cell4.Controls.Add(show);
+                    cell5.Controls.Add(edit);
+                    cell6.Controls.Add(del);
 
                     TableRow row = new TableRow();
 
@@ -71,6 +79,7 @@ namespace Factuur.Facturen
                     row.Cells.Add(cell3);
                     row.Cells.Add(cell4);
                     row.Cells.Add(cell5);
+                    row.Cells.Add(cell6);
 
                     factuurTable.Rows.Add(row);
                 }
@@ -80,6 +89,18 @@ namespace Factuur.Facturen
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
             }
 
+        }
+
+        private void Show_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string id = btn.ID;
+
+            string[] split = id.Split('_');
+            int ID = int.Parse(split[1]);
+
+            Session["Show"] = ID;
+            Response.Redirect("Inzien.aspx");
         }
 
         private void Edit_Click(object sender, EventArgs e)
