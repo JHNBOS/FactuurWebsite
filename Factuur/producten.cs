@@ -18,6 +18,7 @@ namespace Factuur
         public producten()
         {
             this.factuur_items = new HashSet<factuur_items>();
+            this.toewijzen = new HashSet<toewijzen>();
         }
     
         public int ID { get; set; }
@@ -28,5 +29,7 @@ namespace Factuur
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<factuur_items> factuur_items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<toewijzen> toewijzen { get; set; }
     }
 }

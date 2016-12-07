@@ -46,5 +46,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="toewijzen">
+      <EntityTypeMapping TypeName="FactuurDBModel.toewijzen">
+        <MappingFragment StoreEntitySet="toewijzen">
+          <ScalarProperty Name="DebiteurID" ColumnName="DebiteurID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

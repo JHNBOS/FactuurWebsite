@@ -15,6 +15,9 @@ namespace Factuur.Producten
         {
             //Event handlers
             CreateButton.Click += CreateButton_Click;
+
+            //Execute methods
+            FillDDL();
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
@@ -37,14 +40,67 @@ namespace Factuur.Producten
                 db.producten.Add(product);
                 db.SaveChanges();
 
-                Message m = new Message();
-                m.Show("Product is aangemaakt!");
             }
             catch (Exception ex)
             {
-                Message m = new Message();
-                m.Show("Product kon niet worden aangemaakt!");
                 System.Diagnostics.Debug.WriteLine(ex);
+            }
+
+            string debiteur = DebDDL.SelectedValue;
+            
+            if (DebDDL.SelectedValue != "")
+            {
+                string[] name = debiteur.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string fname = name[0];
+                string lname = "";
+
+                for (int i = 1; i < name.Length; i++)
+                {
+                    lname += name[i] + " ";
+                }
+
+                debiteuren deb = db.debiteuren.Where(d => d.Voornaam == fname && d.Achternaam == lname).SingleOrDefault();
+
+                toewijzen toewijzing = new toewijzen();
+                producten prod = db.producten.Where(p => p.Naam == naamBox.Text).SingleOrDefault();
+                toewijzing.ProductID = prod.ID;
+                toewijzing.DebiteurID = deb.ID;
+
+                try
+                {
+                    db.toewijzen.Add(toewijzing);
+                    db.SaveChanges();
+
+                    Message m = new Message();
+                    m.Show("Product is aangemaakt!");
+                }
+                catch (Exception ex)
+                {
+                    Message m = new Message();
+                    m.Show("Product kon niet worden aangemaakt!");
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
+            }
+            else
+            {
+                Message m = new Message();
+                m.Show("Product is aangemaakt!");
+            }
+            
+
+        }
+
+        private void FillDDL()
+        {
+            List<debiteuren> debList = db.debiteuren.ToList();
+
+            DebDDL.Items.Add("");
+
+            for (int i = 0; i < debList.Count; i++)
+            {
+                string name = debList[i].Voornaam + " " + debList[i].Achternaam;
+
+                DebDDL.Items.Add(name);
             }
         }
     }

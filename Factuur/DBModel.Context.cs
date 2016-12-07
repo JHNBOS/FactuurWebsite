@@ -29,5 +29,6 @@ namespace Factuur
         public virtual DbSet<facturen> facturen { get; set; }
         public virtual DbSet<factuur_items> factuur_items { get; set; }
         public virtual DbSet<producten> producten { get; set; }
+        public virtual DbSet<toewijzen> toewijzen { get; set; }
     }
 }

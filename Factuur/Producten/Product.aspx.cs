@@ -27,6 +27,7 @@ namespace Factuur.Producten
             try
             {
                 List<producten> prodlist = db.producten.ToList();
+                List<toewijzen> toewijzenList = db.toewijzen.ToList();
 
                 for (int i = 0; i < prodlist.Count; i++)
                 {
@@ -42,7 +43,6 @@ namespace Factuur.Producten
                     del.Click += Del_Click;
                     del.OnClientClick = "Confirm()";
 
-
                     Button edit = new Button();
                     edit.ID = "edit_" + prodlist[i].ID.ToString();
                     edit.Text = "Wijzigen";
@@ -55,13 +55,30 @@ namespace Factuur.Producten
                     TableCell cell3 = new TableCell();
                     TableCell cell4 = new TableCell();
                     TableCell cell5 = new TableCell();
+                    TableCell cell6 = new TableCell();
+
+                    int pid = prodlist[i].ID;
+
+                    toewijzen tw = toewijzenList.Where(t => t.ProductID == pid).SingleOrDefault();
+
+                    if (tw != null)
+                    {
+                        int id = tw.DebiteurID;
+                        debiteuren deb = db.debiteuren.Find(id);
+
+                        cell4.Text = deb.Voornaam + " " + deb.Achternaam;
+                    }
+                    else
+                    {
+                        cell4.Text = "";
+                    }
 
                     cell.Text = naam;
                     cell1.Text = String.Format("{0:C}", prijs);
                     cell2.Text = String.Format("{0}%", btw);
                     cell3.Text = String.Format("{0}%", korting);
-                    cell4.Controls.Add(edit);
-                    cell5.Controls.Add(del);
+                    cell5.Controls.Add(edit);
+                    cell6.Controls.Add(del);
 
                     TableRow row = new TableRow();
 
@@ -71,6 +88,7 @@ namespace Factuur.Producten
                     row.Cells.Add(cell3);
                     row.Cells.Add(cell4);
                     row.Cells.Add(cell5);
+                    row.Cells.Add(cell6);
 
                     productTable.Rows.Add(row);
                 }
@@ -111,6 +129,7 @@ namespace Factuur.Producten
                     producten prod = db.producten.Where(d => d.ID == ID).SingleOrDefault();
                     List<factuur_items> fiList = db.factuur_items.Where(f => f.ProductID == prod.ID).ToList();
                     List<facturen> factuurList = new List<facturen>();
+                    List<toewijzen> toewijsList = db.toewijzen.Where(t => t.ProductID == ID).ToList();
 
                     for (int i = 0; i < fiList.Count; i++)
                     {
@@ -122,6 +141,7 @@ namespace Factuur.Producten
 
                     db.factuur_items.RemoveRange(fiList);
                     db.facturen.RemoveRange(factuurList);
+                    db.toewijzen.RemoveRange(toewijsList);
                     db.producten.Remove(prod);
                     db.SaveChanges();
 

@@ -14,8 +14,11 @@
 
             <asp:Table ID="CreateTable" runat="server" GridLines="None" CssClass="table table-hover">
                 <asp:TableRow>
-                    <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label1" runat="server" Text="Voornaam" /></asp:TableCell>
-                    <asp:TableCell><asp:TextBox ID="voornaamBox" runat="server" CssClass="form-control" /></asp:TableCell>
+                    <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label1" runat="server" Text="Voornaam" />
+                        </asp:TableCell>
+                    <asp:TableCell><asp:TextBox ID="voornaamBox" runat="server" CssClass="form-control" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Vul een voornaam in." ForeColor="Red" ControlToValidate="voornaamBox" SetFocusOnError="True" />
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label2" runat="server" Text="Achternaam" /></asp:TableCell>
@@ -60,4 +63,5 @@
     </div>
 </div>
 
+    
 </asp:Content>

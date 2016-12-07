@@ -46,6 +46,14 @@
           <Property Name="BTW" Type="int" />
           <Property Name="Korting" Type="int" />
         </EntityType>
+        <EntityType Name="toewijzen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DebiteurID" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_facturen_ToDebiteur">
           <End Role="debiteuren" Type="Self.debiteuren" Multiplicity="1" />
           <End Role="facturen" Type="Self.facturen" Multiplicity="*" />
@@ -82,11 +90,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_toewijzen_ToDebiteur">
+          <End Role="debiteuren" Type="Self.debiteuren" Multiplicity="1" />
+          <End Role="toewijzen" Type="Self.toewijzen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="debiteuren">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="toewijzen">
+              <PropertyRef Name="DebiteurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_toewijzen_ToProduct">
+          <End Role="producten" Type="Self.producten" Multiplicity="1" />
+          <End Role="toewijzen" Type="Self.toewijzen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producten">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="toewijzen">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FactuurDBModelStoreContainer">
           <EntitySet Name="debiteuren" EntityType="Self.debiteuren" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="facturen" EntityType="Self.facturen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="factuur_items" EntityType="Self.factuur_items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="producten" EntityType="Self.producten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="toewijzen" EntityType="Self.toewijzen" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_facturen_ToDebiteur" Association="Self.FK_facturen_ToDebiteur">
             <End Role="debiteuren" EntitySet="debiteuren" />
             <End Role="facturen" EntitySet="facturen" />
@@ -98,6 +131,14 @@
           <AssociationSet Name="FK_factuur_items_ToProduct" Association="Self.FK_factuur_items_ToProduct">
             <End Role="producten" EntitySet="producten" />
             <End Role="factuur_items" EntitySet="factuur_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_toewijzen_ToDebiteur" Association="Self.FK_toewijzen_ToDebiteur">
+            <End Role="debiteuren" EntitySet="debiteuren" />
+            <End Role="toewijzen" EntitySet="toewijzen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_toewijzen_ToProduct" Association="Self.FK_toewijzen_ToProduct">
+            <End Role="producten" EntitySet="producten" />
+            <End Role="toewijzen" EntitySet="toewijzen" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -118,6 +159,7 @@
           <Property Name="Plaats" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Land" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="facturen" Relationship="FactuurDBModel.FK_facturen_ToDebiteur" FromRole="debiteuren" ToRole="facturen" />
+          <NavigationProperty Name="toewijzen" Relationship="FactuurDBModel.FK_toewijzen_ToDebiteur" FromRole="debiteuren" ToRole="toewijzen" />
         </EntityType>
         <EntityType Name="facturen">
           <Key>
@@ -150,6 +192,7 @@
           <Property Name="BTW" Type="Int32" />
           <Property Name="Korting" Type="Int32" />
           <NavigationProperty Name="factuur_items" Relationship="Self.FK_factuur_items_ToProduct" FromRole="producten" ToRole="factuur_items" />
+          <NavigationProperty Name="toewijzen" Relationship="FactuurDBModel.FK_toewijzen_ToProduct" FromRole="producten" ToRole="toewijzen" />
         </EntityType>
         <Association Name="FK_factuur_items_ToFactuur">
           <End Role="facturen" Type="Self.facturen" Multiplicity="1" />
@@ -192,6 +235,15 @@
             <End Role="debiteuren" EntitySet="debiteuren" />
             <End Role="facturen" EntitySet="facturen" />
           </AssociationSet>
+          <EntitySet Name="toewijzen" EntityType="FactuurDBModel.toewijzen" />
+          <AssociationSet Name="FK_toewijzen_ToDebiteur" Association="FactuurDBModel.FK_toewijzen_ToDebiteur">
+            <End Role="debiteuren" EntitySet="debiteuren" />
+            <End Role="toewijzen" EntitySet="toewijzen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_toewijzen_ToProduct" Association="FactuurDBModel.FK_toewijzen_ToProduct">
+            <End Role="producten" EntitySet="producten" />
+            <End Role="toewijzen" EntitySet="toewijzen" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_facturen_ToDebiteur">
           <End Type="FactuurDBModel.debiteuren" Role="debiteuren" Multiplicity="1" />
@@ -202,6 +254,40 @@
             </Principal>
             <Dependent Role="facturen">
               <PropertyRef Name="Debiteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="toewijzen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DebiteurID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="debiteuren" Relationship="FactuurDBModel.FK_toewijzen_ToDebiteur" FromRole="toewijzen" ToRole="debiteuren" />
+          <NavigationProperty Name="producten" Relationship="FactuurDBModel.FK_toewijzen_ToProduct" FromRole="toewijzen" ToRole="producten" />
+        </EntityType>
+        <Association Name="FK_toewijzen_ToDebiteur">
+          <End Type="FactuurDBModel.debiteuren" Role="debiteuren" Multiplicity="1" />
+          <End Type="FactuurDBModel.toewijzen" Role="toewijzen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="debiteuren">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="toewijzen">
+              <PropertyRef Name="DebiteurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_toewijzen_ToProduct">
+          <End Type="FactuurDBModel.producten" Role="producten" Multiplicity="1" />
+          <End Type="FactuurDBModel.toewijzen" Role="toewijzen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producten">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="toewijzen">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,6 +339,15 @@
                 <ScalarProperty Name="Prijs" ColumnName="Prijs" />
                 <ScalarProperty Name="BTW" ColumnName="BTW" />
                 <ScalarProperty Name="Korting" ColumnName="Korting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="toewijzen">
+            <EntityTypeMapping TypeName="FactuurDBModel.toewijzen">
+              <MappingFragment StoreEntitySet="toewijzen">
+                <ScalarProperty Name="DebiteurID" ColumnName="DebiteurID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -30,6 +30,11 @@
                     <asp:TableCell><asp:TextBox ID="kortingBox" runat="server" TextMode="Number" Width="280" CssClass="form-control" /></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
+                    <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label5" runat="server" Text="Toewijzen aan debiteur" /></asp:TableCell>
+                    <asp:TableCell>
+                        <asp:DropDownList ID="DebDDL" runat="server" Width="280" CssClass="form-control"></asp:DropDownList></asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
                     <asp:TableCell></asp:TableCell>
                     <asp:TableCell>
                         <br />

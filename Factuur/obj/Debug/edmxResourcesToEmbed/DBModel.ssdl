@@ -41,6 +41,14 @@
     <Property Name="BTW" Type="int" />
     <Property Name="Korting" Type="int" />
   </EntityType>
+  <EntityType Name="toewijzen">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="DebiteurID" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_facturen_ToDebiteur">
     <End Role="debiteuren" Type="Self.debiteuren" Multiplicity="1" />
     <End Role="facturen" Type="Self.facturen" Multiplicity="*" />
@@ -77,11 +85,36 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_toewijzen_ToDebiteur">
+    <End Role="debiteuren" Type="Self.debiteuren" Multiplicity="1" />
+    <End Role="toewijzen" Type="Self.toewijzen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="debiteuren">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="toewijzen">
+        <PropertyRef Name="DebiteurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_toewijzen_ToProduct">
+    <End Role="producten" Type="Self.producten" Multiplicity="1" />
+    <End Role="toewijzen" Type="Self.toewijzen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producten">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="toewijzen">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="FactuurDBModelStoreContainer">
     <EntitySet Name="debiteuren" EntityType="Self.debiteuren" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="facturen" EntityType="Self.facturen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="factuur_items" EntityType="Self.factuur_items" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="producten" EntityType="Self.producten" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="toewijzen" EntityType="Self.toewijzen" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_facturen_ToDebiteur" Association="Self.FK_facturen_ToDebiteur">
       <End Role="debiteuren" EntitySet="debiteuren" />
       <End Role="facturen" EntitySet="facturen" />
@@ -93,6 +126,14 @@
     <AssociationSet Name="FK_factuur_items_ToProduct" Association="Self.FK_factuur_items_ToProduct">
       <End Role="producten" EntitySet="producten" />
       <End Role="factuur_items" EntitySet="factuur_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_toewijzen_ToDebiteur" Association="Self.FK_toewijzen_ToDebiteur">
+      <End Role="debiteuren" EntitySet="debiteuren" />
+      <End Role="toewijzen" EntitySet="toewijzen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_toewijzen_ToProduct" Association="Self.FK_toewijzen_ToProduct">
+      <End Role="producten" EntitySet="producten" />
+      <End Role="toewijzen" EntitySet="toewijzen" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

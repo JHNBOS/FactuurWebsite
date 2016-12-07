@@ -31,6 +31,7 @@
                     <asp:TableHeaderCell>Prijs</asp:TableHeaderCell>
                     <asp:TableHeaderCell>BTW</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Korting</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Toegewezen aan</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Wijzigen</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Verwijderen</asp:TableHeaderCell>
                 </asp:TableHeaderRow>

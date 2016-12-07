@@ -12,6 +12,9 @@
         <AssociationConnector Association="FactuurDBModel.FK_factuur_items_ToFactuur" ManuallyRouted="false" />
         <AssociationConnector Association="FactuurDBModel.FK_factuur_items_ToProduct" ManuallyRouted="false" />
         <AssociationConnector Association="FactuurDBModel.FK_facturen_ToDebiteur" />
+        <EntityTypeShape EntityType="FactuurDBModel.toewijzen" Width="1.5" PointX="5" PointY="4.375" />
+        <AssociationConnector Association="FactuurDBModel.FK_toewijzen_ToDebiteur" />
+        <AssociationConnector Association="FactuurDBModel.FK_toewijzen_ToProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
