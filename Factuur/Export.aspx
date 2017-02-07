@@ -7,10 +7,9 @@
 
         <!-- Factuur tekst en logo-->
         <div class="row">
-        <div class="col-sm-3">
-            <h1 style="text-align: left;font-weight:bold;">FACTUUR</h1>
+        <div class="col-sm-3"><h1 style="text-align: left;font-weight:bold;">FACTUUR</h1>
         </div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-5"></div>
         <div class="col-sm-3">
             <h1>mijnFactuur</h1>
         </div>
@@ -28,7 +27,7 @@
                     <asp:TableRow CssClass="ClientInfo"><asp:TableCell>3014 PK ROTTERDAM</asp:TableCell></asp:TableRow>
             </asp:Table>
         </div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-5"></div>
         <div class="col-sm-3">
             <asp:Table ID="addressTable" runat="server" BorderStyle="None">
                 <asp:TableRow>
@@ -71,7 +70,7 @@
     <!-- Spacer -->
     <div class="row">
         <div class="col-sm-3"></div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-5"></div>
         <div class="col-sm-3"></div>
     </div>
 
@@ -83,16 +82,16 @@
         <div class="col-sm-3">
             <asp:Table ID="FactuurDatumTable" runat="server" BorderStyle="None">
                 <asp:TableRow>
-                    <asp:TableCell CssClass="FactInfo"><b>Nummer:</b></asp:TableCell>
+                    <asp:TableCell CssClass="FactInfo"><b>Factuurnummer:</b></asp:TableCell>
                     <asp:TableCell CssClass="FactInfo">&emsp;9876</asp:TableCell>
                 </asp:TableRow>
                     <asp:TableRow>
-                        <asp:TableCell CssClass="FactInfo"><b>Datum:</b></asp:TableCell>
-                        <asp:TableCell CssClass="FactInfo">&emsp;07-02-2017</asp:TableCell>
+                        <asp:TableCell CssClass="FactInfo"><b>Factuurdatum:</b></asp:TableCell>
+                        <asp:TableCell CssClass="FactInfo">&emsp;<%= DateTime.Now.ToString("dd-MM-yyyy") %></asp:TableCell>
                     </asp:TableRow>
             </asp:Table>
         </div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-5"></div>
         <div class="col-sm-3"></div>
     </div>
 
@@ -102,9 +101,11 @@
          
     <!-- Factuur inhoud -->
     <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">test</div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-12">
+            <p>Hierbij brengen wij u in rekening:</p>
+
+
+        </div>
     </div>
 
 

@@ -52,6 +52,7 @@ input[type="checkbox"]{
 
 #MainContent_addressTable{
     border-collapse: separate;
+    font-size: 13px;
 }
 
 #MainContent_addressTable td{
@@ -65,17 +66,18 @@ input[type="checkbox"]{
 
 .ClientInfo {
     font-weight: bold;
+    font-size: 14px;
 }
 
 
 .export-container{
-    margin-left: 120px;
-    margin-right: 75px;
+    margin-left: 130px;
+    margin-right: -55px;
 }
 
 #MainContent_DebTable{
     border-collapse: separate;
-    margin-top: 168px;
+    margin-top: 84px;
 }
 
 #MainContent_FactuurDatumTable{
@@ -88,5 +90,6 @@ input[type="checkbox"]{
 
 .FactInfo{
     vertical-align: top;
+    font-size: 14px;
 }
 
