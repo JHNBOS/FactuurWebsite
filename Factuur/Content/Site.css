@@ -49,3 +49,44 @@ input[type="select"] {
 input[type="checkbox"]{
     margin-right: 6px;
 }
+
+#MainContent_addressTable{
+    border-collapse: separate;
+}
+
+#MainContent_addressTable td{
+    padding-right: 10px;
+    vertical-align: top;
+}
+
+.addressInfo {
+    text-align: right;
+}
+
+.ClientInfo {
+    font-weight: bold;
+}
+
+
+.export-container{
+    margin-left: 120px;
+    margin-right: 75px;
+}
+
+#MainContent_DebTable{
+    border-collapse: separate;
+    margin-top: 168px;
+}
+
+#MainContent_FactuurDatumTable{
+    border-collapse: separate;
+}
+
+#MainContent_FactuurDatumTable td{
+    vertical-align: top;
+}
+
+.FactInfo{
+    vertical-align: top;
+}
+
