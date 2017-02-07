@@ -21,7 +21,7 @@
     <Property Name="Factuurnummer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Factuurdatum" Type="datetime" Nullable="false" />
     <Property Name="Totaalbedrag" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="Debiteur" Type="int" Nullable="false" />
+    <Property Name="DebiteurID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="factuur_items">
     <Key>
@@ -49,7 +49,7 @@
     <Property Name="ProductID" Type="int" Nullable="false" />
     <Property Name="DebiteurID" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_facturen_ToDebiteur">
+  <Association Name="FK_facturen_debiteur">
     <End Role="debiteuren" Type="Self.debiteuren" Multiplicity="1" />
     <End Role="facturen" Type="Self.facturen" Multiplicity="*" />
     <ReferentialConstraint>
@@ -57,7 +57,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="facturen">
-        <PropertyRef Name="Debiteur" />
+        <PropertyRef Name="DebiteurID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -115,7 +115,7 @@
     <EntitySet Name="factuur_items" EntityType="Self.factuur_items" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="producten" EntityType="Self.producten" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="toewijzen" EntityType="Self.toewijzen" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_facturen_ToDebiteur" Association="Self.FK_facturen_ToDebiteur">
+    <AssociationSet Name="FK_facturen_debiteur" Association="Self.FK_facturen_debiteur">
       <End Role="debiteuren" EntitySet="debiteuren" />
       <End Role="facturen" EntitySet="facturen" />
     </AssociationSet>

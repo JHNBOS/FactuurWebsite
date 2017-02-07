@@ -23,10 +23,10 @@ namespace Factuur
         public int Factuurnummer { get; set; }
         public System.DateTime Factuurdatum { get; set; }
         public Nullable<decimal> Totaalbedrag { get; set; }
-        public int Debiteur { get; set; }
+        public int DebiteurID { get; set; }
     
+        public virtual debiteuren debiteuren { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<factuur_items> factuur_items { get; set; }
-        public virtual debiteuren debiteuren { get; set; }
     }
 }

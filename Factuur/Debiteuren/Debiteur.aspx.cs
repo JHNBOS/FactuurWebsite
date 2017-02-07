@@ -135,8 +135,8 @@ namespace Factuur
                 try
                 {
                     debiteuren deb = db.debiteuren.Where(d => d.ID == ID).SingleOrDefault();
-                    List<facturen> fList = db.facturen.Where(fa => fa.Debiteur == ID).ToList();
-                    List<factuur_items> fiList = db.factuur_items.Where(f => f.facturen.Debiteur == ID).ToList();
+                    List<facturen> fList = db.facturen.Where(fa => fa.DebiteurID == ID).ToList();
+                    List<factuur_items> fiList = db.factuur_items.Where(f => f.facturen.DebiteurID == ID).ToList();
 
                     db.factuur_items.RemoveRange(fiList);
                     db.facturen.RemoveRange(fList);

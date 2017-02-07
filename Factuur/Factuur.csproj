@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Select.HtmlToPdf, Version=2.4.0.1, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.2.4.0.1\lib\net40\Select.HtmlToPdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -210,6 +214,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="PDF.html" />
     <Content Include="Producten\Aanmaken.aspx" />
     <Content Include="Producten\Product.aspx" />
     <Content Include="Producten\Wijzigen.aspx" />
@@ -399,6 +404,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="debiteuren.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Debiteuren\Aanmaken.aspx.cs">
       <DependentUpon>Aanmaken.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -412,9 +420,6 @@
     </Compile>
     <Compile Include="Debiteuren\Debiteur.aspx.designer.cs">
       <DependentUpon>Debiteur.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="debiteuren.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Debiteuren\Wijzigen.aspx.cs">
       <DependentUpon>Wijzigen.aspx</DependentUpon>
@@ -554,7 +559,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.4.0.1\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.4.0.1\build\Select.HtmlToPdf.targets'))" />
   </Target>
+  <Import Project="..\packages\Select.HtmlToPdf.2.4.0.1\build\Select.HtmlToPdf.targets" Condition="Exists('..\packages\Select.HtmlToPdf.2.4.0.1\build\Select.HtmlToPdf.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

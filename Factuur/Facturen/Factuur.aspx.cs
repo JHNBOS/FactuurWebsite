@@ -33,7 +33,7 @@ namespace Factuur.Facturen
                     string fdatum = String.Format("{0:dd-MM-yyyy}", factuurlist[i].Factuurdatum);
                     string totaal = String.Format("{0:C}", factuurlist[i].Totaalbedrag);
 
-                    debiteuren deb = db.debiteuren.Find(factuurlist[i].Debiteur);
+                    debiteuren deb = db.debiteuren.Find(factuurlist[i].DebiteurID);
 
                     string debiteur = deb.Voornaam + " " + deb.Achternaam;
 

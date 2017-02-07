@@ -30,7 +30,7 @@ namespace Factuur.Facturen
 
             facturen factuur = db.facturen.Find(ID);
 
-            int debID = factuur.Debiteur;
+            int debID = factuur.DebiteurID;
             debiteuren deb = db.debiteuren.Find(debID);
 
             List<factuur_items> fiList = db.factuur_items.Where(f => f.FactuurID == ID).ToList();

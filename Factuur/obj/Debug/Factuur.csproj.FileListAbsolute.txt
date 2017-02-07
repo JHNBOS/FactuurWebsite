@@ -79,6 +79,7 @@ C:\Github\FactuurWebsite\Factuur\bin\roslyn\VBCSCompiler.exe.config
 C:\Github\FactuurWebsite\Factuur\bin\Factuur.dll.config
 C:\Github\FactuurWebsite\Factuur\bin\Factuur.dll
 C:\Github\FactuurWebsite\Factuur\bin\Factuur.pdb
+C:\Github\FactuurWebsite\Factuur\bin\Select.Html.dep
 C:\Github\FactuurWebsite\Factuur\bin\Antlr3.Runtime.dll
 C:\Github\FactuurWebsite\Factuur\bin\AspNet.ScriptManager.bootstrap.dll
 C:\Github\FactuurWebsite\Factuur\bin\AspNet.ScriptManager.jQuery.dll
@@ -104,10 +105,12 @@ C:\Github\FactuurWebsite\Factuur\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Web.Infrastructure.dll
 C:\Github\FactuurWebsite\Factuur\bin\Newtonsoft.Json.dll
 C:\Github\FactuurWebsite\Factuur\bin\Owin.dll
+C:\Github\FactuurWebsite\Factuur\bin\Select.HtmlToPdf.dll
 C:\Github\FactuurWebsite\Factuur\bin\System.Web.Optimization.dll
 C:\Github\FactuurWebsite\Factuur\bin\System.Web.Providers.dll
 C:\Github\FactuurWebsite\Factuur\bin\WebGrease.dll
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Github\FactuurWebsite\Factuur\bin\Select.HtmlToPdf.xml
 C:\Github\FactuurWebsite\Factuur\bin\System.Web.Optimization.xml
 C:\Github\FactuurWebsite\Factuur\bin\Antlr3.Runtime.pdb
 C:\Github\FactuurWebsite\Factuur\bin\Newtonsoft.Json.xml
@@ -127,6 +130,5 @@ C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.Google.xml
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.csprojResolveAssemblyReference.cache
 C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.dll
 C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.pdb

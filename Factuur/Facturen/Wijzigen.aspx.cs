@@ -113,7 +113,7 @@ namespace Factuur.Facturen
 
                 debiteuren deb = db.debiteuren.Where(d => d.Voornaam == fname && d.Achternaam == lname).SingleOrDefault();
 
-                fact.Debiteur = deb.ID;
+                fact.DebiteurID = deb.ID;
 
                 //----------------------------------------------------
                 //Product
