@@ -22,9 +22,20 @@
         <div class="col-sm-3" style="vertical-align:bottom;">
             <asp:Table ID="DebTable" runat="server" BorderStyle="None">
                 <asp:TableRow>
-                    <asp:TableCell CssClass="ClientInfo">Johan Bos</asp:TableCell></asp:TableRow>
-                    <asp:TableRow CssClass="ClientInfo"><asp:TableCell>Gouvernestraat 85B</asp:TableCell></asp:TableRow>
-                    <asp:TableRow CssClass="ClientInfo"><asp:TableCell>3014 PK ROTTERDAM</asp:TableCell></asp:TableRow>
+                    <asp:TableCell CssClass="ClientInfo">
+                        <asp:Label ID="DebiteurNaamLabel" runat="server" Text=""></asp:Label>
+                    </asp:TableCell>
+                </asp:TableRow>
+                    <asp:TableRow CssClass="ClientInfo">
+                        <asp:TableCell>
+                            <asp:Label ID="DebiteurAdresLabel" runat="server" Text=""></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow CssClass="ClientInfo">
+                        <asp:TableCell>
+                            <asp:Label ID="DebiteurPostcodeLabel" runat="server" Text=""></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
             </asp:Table>
         </div>
         <div class="col-sm-5"></div>
@@ -83,11 +94,17 @@
             <asp:Table ID="FactuurDatumTable" runat="server" BorderStyle="None">
                 <asp:TableRow>
                     <asp:TableCell CssClass="FactInfo"><b>Factuurnummer:</b></asp:TableCell>
-                    <asp:TableCell CssClass="FactInfo">&emsp;9876</asp:TableCell>
+                    <asp:TableCell CssClass="FactInfo">
+                        &emsp;
+                        <asp:Label ID="FactuurNummerLabel" runat="server" Text=""></asp:Label>
+                    </asp:TableCell>
                 </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell CssClass="FactInfo"><b>Factuurdatum:</b></asp:TableCell>
-                        <asp:TableCell CssClass="FactInfo">&emsp;<%= DateTime.Now.ToString("dd-MM-yyyy") %></asp:TableCell>
+                        <asp:TableCell CssClass="FactInfo">
+                            &emsp;
+                            <asp:Label ID="FactuurDatumLabel" runat="server" Text=""></asp:Label>
+                        </asp:TableCell>
                     </asp:TableRow>
             </asp:Table>
         </div>
@@ -103,6 +120,18 @@
     <div class="row">
         <div class="col-sm-12">
             <p>Hierbij brengen wij u in rekening:</p>
+
+            <br />
+
+            <asp:Table ID="FactuurTable" runat="server" CssClass="table table-striped" Width="100%">
+                <asp:TableHeaderRow HorizontalAlign="Center" VerticalAlign="Middle">
+                    <asp:TableHeaderCell>Product</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Prijs</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>BTW</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Korting</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Totaal</asp:TableHeaderCell>
+                </asp:TableHeaderRow>
+            </asp:Table>
 
 
         </div>

@@ -53,6 +53,12 @@ namespace Factuur.Facturen
                     edit.Click += Edit_Click;
                     */
 
+                    Button export = new Button();
+                    export.ID = "export_" + factuurlist[i].Factuurnummer.ToString();
+                    export.Text = "Exporteer";
+                    export.CssClass = "btn btn-danger btn sm";
+                    export.Click += Export_Click;
+
                     Button show = new Button();
                     show.ID = "show_" + factuurlist[i].Factuurnummer.ToString();
                     show.Text = "Inzien";
@@ -65,15 +71,15 @@ namespace Factuur.Facturen
                     TableCell cell3 = new TableCell();
                     TableCell cell4 = new TableCell();
                     TableCell cell5 = new TableCell();
-                    //TableCell cell6 = new TableCell();
+                    TableCell cell6 = new TableCell();
 
                     cell.Text = fnummer;
                     cell1.Text = fdatum;
                     cell2.Text = totaal;
                     cell3.Text = debiteur;
                     cell4.Controls.Add(show);
-                    cell5.Controls.Add(del);
-                    //cell6.Controls.Add(edit);
+                    cell5.Controls.Add(export);
+                    cell6.Controls.Add(del);
 
                     TableRow row = new TableRow();
 
@@ -83,7 +89,7 @@ namespace Factuur.Facturen
                     row.Cells.Add(cell3);
                     row.Cells.Add(cell4);
                     row.Cells.Add(cell5);
-                    //row.Cells.Add(cell6);
+                    row.Cells.Add(cell6);
 
                     factuurTable.Rows.Add(row);
                 }
@@ -93,6 +99,18 @@ namespace Factuur.Facturen
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
             }
 
+        }
+
+        private void Export_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string id = btn.ID;
+
+            string[] split = id.Split('_');
+            int ID = int.Parse(split[1]);
+
+            Session["Export"] = ID;
+            Response.Redirect("../Export.aspx");
         }
 
         private void Show_Click(object sender, EventArgs e)

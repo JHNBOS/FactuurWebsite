@@ -22,6 +22,33 @@ namespace Factuur {
         protected global::System.Web.UI.WebControls.Table DebTable;
         
         /// <summary>
+        /// DebiteurNaamLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DebiteurNaamLabel;
+        
+        /// <summary>
+        /// DebiteurAdresLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DebiteurAdresLabel;
+        
+        /// <summary>
+        /// DebiteurPostcodeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DebiteurPostcodeLabel;
+        
+        /// <summary>
         /// addressTable control.
         /// </summary>
         /// <remarks>
@@ -38,5 +65,32 @@ namespace Factuur {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table FactuurDatumTable;
+        
+        /// <summary>
+        /// FactuurNummerLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FactuurNummerLabel;
+        
+        /// <summary>
+        /// FactuurDatumLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FactuurDatumLabel;
+        
+        /// <summary>
+        /// FactuurTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table FactuurTable;
     }
 }
