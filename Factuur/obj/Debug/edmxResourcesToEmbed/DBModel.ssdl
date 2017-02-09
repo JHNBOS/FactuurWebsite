@@ -30,6 +30,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FactuurID" Type="int" Nullable="false" />
     <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Aantal" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="producten">
     <Key>

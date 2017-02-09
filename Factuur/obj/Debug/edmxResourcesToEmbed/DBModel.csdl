@@ -63,6 +63,7 @@
     <Property Name="ProductID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="facturen" Relationship="FactuurDBModel.FK_factuur_items_ToFactuur" FromRole="factuur_items" ToRole="facturen" />
     <NavigationProperty Name="producten" Relationship="FactuurDBModel.FK_factuur_items_ToProduct" FromRole="factuur_items" ToRole="producten" />
+    <Property Name="Aantal" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="producten">
     <Key>

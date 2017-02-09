@@ -1,4 +1,5 @@
-﻿<%@ Page Title="Factuur aanmaken" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Aanmaken.aspx.cs" Inherits="Factuur.Facturen.Aanmaken" %>
+﻿<%@ Page Title="Factuur aanmaken" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Aanmaken.aspx.cs" Inherits="Factuur.Facturen.Aanmaken" MaintainScrollPositionOnPostBack="true"
+ %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
@@ -28,7 +29,13 @@
                 <asp:TableRow>
                     <asp:TableCell HorizontalAlign="Right"><asp:Label ID="Label3" runat="server" Text="Producten" /></asp:TableCell>
                     <asp:TableCell>
-                        <asp:CheckBoxList ID="productCheckBoxList" AutoPostBack="true" OnSelectedIndexChanged="productCheckBoxList_SelectedIndexChanged1" runat="server"></asp:CheckBoxList>
+                        
+
+                        <asp:Table ID="SelectTable" GridLines="None" runat="server" CssClass="table table-hover" ViewStateMode="Enabled">
+                            
+                        </asp:Table>
+
+
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -43,7 +50,7 @@
                             Text="Aanmaken" Width="120" /></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-
+            
             
         </div>
         <div class="col-sm-1"></div>

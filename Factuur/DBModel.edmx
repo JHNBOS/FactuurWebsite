@@ -35,6 +35,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FactuurID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Aantal" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="producten">
           <Key>
@@ -208,6 +209,7 @@
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="facturen" Relationship="FactuurDBModel.FK_factuur_items_ToFactuur" FromRole="factuur_items" ToRole="facturen" />
           <NavigationProperty Name="producten" Relationship="FactuurDBModel.FK_factuur_items_ToProduct" FromRole="factuur_items" ToRole="producten" />
+          <Property Name="Aantal" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="producten">
           <Key>
@@ -325,6 +327,7 @@
           <EntitySetMapping Name="factuur_items">
             <EntityTypeMapping TypeName="FactuurDBModel.factuur_items">
               <MappingFragment StoreEntitySet="factuur_items">
+                <ScalarProperty Name="Aantal" ColumnName="Aantal" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="FactuurID" ColumnName="FactuurID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

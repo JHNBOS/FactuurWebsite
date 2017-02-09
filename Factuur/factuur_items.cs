@@ -17,6 +17,7 @@ namespace Factuur
         public int ID { get; set; }
         public int FactuurID { get; set; }
         public int ProductID { get; set; }
+        public int Aantal { get; set; }
     
         public virtual facturen facturen { get; set; }
         public virtual producten producten { get; set; }

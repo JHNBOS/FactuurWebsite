@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,13 +20,12 @@ namespace Factuur.Facturen
             //Set current date to datumBox
             datumBox.Text = String.Format("{0:yyyy-MM-dd}", DateTime.Now);
 
-            //Execute methods
-            if (!IsPostBack)
-            {
-                FillDDL();
-                FillCheckBoxList();
-            }
-            
+        }
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            FillDDL();
+            FillGrid();
         }
 
         //Fill dropdownlist with debiteuren
@@ -46,34 +46,134 @@ namespace Factuur.Facturen
      
 
         //Fill checkboxlist with producten
-        private void FillCheckBoxList()
+        private void FillGrid()
         {
             List<producten> productList = db.producten.ToList();
+
 
             for (int i = 0; i < productList.Count; i++)
             {
                 string pnaam = productList[i].Naam;
 
-                productCheckBoxList.Items.Add(pnaam);
+                CheckBox chk = new CheckBox();
+                chk.ID = "chk_" + pnaam;
+                chk.Text = pnaam;
+
+                TextBox txtBox = new TextBox();
+                txtBox.ID = "aantal_" + pnaam;
+                txtBox.AutoPostBack = true;
+                txtBox.TextMode = TextBoxMode.Number;
+                txtBox.TextChanged += new EventHandler(TxtBox_TextChanged1);
+                txtBox.PreRender += new EventHandler(TxtBox_PreRender);
+                txtBox.CssClass = "form-control";
+                txtBox.Text = "0";
+
+                TableRow row = new TableRow();
+                TableCell cell1 = new TableCell();
+                TableCell cell2 = new TableCell();
+
+                cell1.Controls.Add(chk);
+                cell2.Controls.Add(txtBox);
+
+                row.Cells.Add(cell1);
+                row.Cells.Add(cell2);
+            
+                SelectTable.Rows.Add(row);
             }
+
         }
+
+        private void TxtBox_TextChanged1(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("TextChanged fired up!");
+
+            decimal total = 0;
+            List<string> values = new List<string>();
+
+            foreach (var tr in SelectTable.Controls.OfType<TableRow>())
+            {
+                foreach (var td in tr.Controls.OfType<TableCell>())
+                {
+                    foreach (var chk in td.Controls.OfType<CheckBox>())
+                    {
+                        if (chk.Checked)
+                        {
+                            values.Add(chk.Text);
+
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < values.Count; i++)
+            {
+                string j = values[i];
+                producten p = db.producten.Where(pr => pr.Naam == j).SingleOrDefault();
+
+                string[] split = values[i].Split('_');
+                TextBox txtBox = null;
+
+
+                foreach (var tr in SelectTable.Controls.OfType<TableRow>())
+                {
+                    foreach (var td in tr.Controls.OfType<TableCell>())
+                    {
+                        foreach (var txt in td.Controls.OfType<TextBox>())
+                        {
+                            if (txt.ID.Contains(split[0]))
+                            {
+                                txtBox = txt;
+                            }
+                        }
+                    }
+                }
+
+                if (txtBox != null)
+                {
+                    decimal num = decimal.Parse(txtBox.Text);
+                    decimal price = (decimal)p.Prijs;
+                    total += (price * num);
+                }
+                else
+                {
+                    total += 0;
+                }
+                
+            }
+
+            totaalBox.Text = String.Format("{0:C}", total);
+        }
+
+        private void TxtBox_PreRender(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            txtBox.Attributes["value"] = txtBox.Text;
+        }
+
 
         private void CreateFactuur()
         {
+            List<int> aantalList = new List<int>();
             facturen factuur = new facturen();
             factuur.Factuurdatum = DateTime.Parse(datumBox.Text);
 
             //---------------------------------
             //Debiteur
             string debiteur = debDDL.SelectedValue;
-            string[] name = debiteur.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string fname = name[0];
-            string lname = "";
+            string[] name = debiteur.Split(' ');
+            System.Diagnostics.Debug.WriteLine("fname: " + name[0]);
+            System.Diagnostics.Debug.WriteLine("lname: " + name[1]);
 
+            string fname = name[0];
+            string lname = name[1];
+
+            /*
             for (int i = 1; i < name.Length; i++)
             {
                 lname += name[i] + " ";
             }
+            */
 
             debiteuren deb = db.debiteuren.Where(d => d.Voornaam == fname && d.Achternaam == lname).SingleOrDefault();
             factuur.DebiteurID = deb.ID;
@@ -83,29 +183,41 @@ namespace Factuur.Facturen
             List<producten> proList = new List<producten>();
             List<string> values = new List<string>();
 
-            foreach (ListItem Item in productCheckBoxList.Items)
+            foreach (var tr in SelectTable.Controls.OfType<TableRow>())
             {
-                if (Item.Selected)
+                foreach (var td in tr.Controls.OfType<TableCell>())
                 {
-                    values.Add(Item.Value);
+                    foreach (var chk in td.Controls.OfType<CheckBox>())
+                    {
+                        if (chk.Checked)
+                        {
+                            values.Add(chk.Text);
+
+                        }
+                    }
                 }
             }
+
+            string product = "";
 
             for (int i = 0; i < values.Count; i++)
             {
                 string j = values[i];
+                product = j;
+
+
                 producten p = db.producten.Where(pr => pr.Naam == j).SingleOrDefault();
                 proList.Add(p);
             }
 
+            System.Diagnostics.Debug.WriteLine("size proList: " + proList.Count);
+
 
             //Totaalbedrag factuur
-            decimal total = 0;
+            string totalString = totaalBox.Text;
+            string str = totalString.Replace("€", string.Empty);
 
-            for (int i = 0; i < proList.Count; i++)
-            {
-                total += (decimal) proList[i].Prijs;
-            }
+            decimal total = decimal.Parse(str);
 
             factuur.Totaalbedrag = total;
 
@@ -117,14 +229,9 @@ namespace Factuur.Facturen
             {
                 db.facturen.Add(factuur);
                 db.SaveChanges();
-
-                Message m = new Message();
-                m.Show("Factuur is aangemaakt!");
             }
             catch (Exception ex)
             {
-                Message m = new Message();
-                m.Show("Factuur kon niet worden aangemaakt!");
                 System.Diagnostics.Debug.WriteLine(ex);
             }
 
@@ -132,25 +239,71 @@ namespace Factuur.Facturen
 
             List<factuur_items> fiList = new List<factuur_items>();
 
-            for (int i = 0; i < proList.Count; i++)
-            {
-                factuur_items fi = new factuur_items();
-                fi.FactuurID = factuur.Factuurnummer;
-                fi.ProductID = proList[i].ID;
+            TextBox txtBox = null;
 
-                fiList.Add(fi);
+            foreach (var tr in SelectTable.Controls.OfType<TableRow>())
+            {
+                foreach (var td in tr.Controls.OfType<TableCell>())
+                {
+                    foreach (var txt in td.Controls.OfType<TextBox>())
+                    {
+                        if (txt.ID.Contains(product))
+                        {
+                            txtBox = txt;
+                        }
+                    }
+                }
             }
+
             
 
-            try
+            if (proList.Count == 1)
             {
-                db.factuur_items.AddRange(fiList);
-                db.SaveChanges();
+                System.Diagnostics.Debug.WriteLine("Only one item in list");
+
+                factuur_items fi = new factuur_items();
+                fi.FactuurID = factuur.Factuurnummer;
+                fi.Aantal = int.Parse(txtBox.Text);
+                fi.ProductID = proList[0].ID;
+
+                try
+                {
+                    db.factuur_items.Add(fi);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
             }
-            catch (Exception ex)
+            else if(proList.Count > 1)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                System.Diagnostics.Debug.WriteLine("More than one item in list");
+
+                for (int i = 0; i < proList.Count; i++)
+                {
+                    factuur_items sfi = new factuur_items();
+                    sfi.FactuurID = factuur.Factuurnummer;
+                    sfi.Aantal = int.Parse(txtBox.Text);
+
+                    sfi.ProductID = proList[i].ID;
+                    fiList.Add(sfi);
+
+                }
+
+                try
+                {
+                    db.factuur_items.AddRange(fiList);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
+
             }
+
+            
         }
 
 
@@ -161,29 +314,8 @@ namespace Factuur.Facturen
             Response.Redirect("Factuur.aspx");
         }
 
-        protected void productCheckBoxList_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-            decimal total = 0;
-            List<string> values = new List<string>();
 
-            foreach (ListItem Item in productCheckBoxList.Items)
-            {
-                if (Item.Selected)
-                {
-                    values.Add(Item.Value);
-                }
-            }
+       
 
-            for (int i = 0; i < values.Count; i++)
-            {
-                string j = values[i];
-                producten p = db.producten.Where(pr => pr.Naam == j).SingleOrDefault();
-
-                decimal price = (decimal)p.Prijs;
-                total += price;
-            }
-
-            totaalBox.Text = String.Format("{0:C}", total);
-        }
     }
 }

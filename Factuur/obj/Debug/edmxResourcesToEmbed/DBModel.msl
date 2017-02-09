@@ -29,6 +29,7 @@
     <EntitySetMapping Name="factuur_items">
       <EntityTypeMapping TypeName="FactuurDBModel.factuur_items">
         <MappingFragment StoreEntitySet="factuur_items">
+          <ScalarProperty Name="Aantal" ColumnName="Aantal" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="FactuurID" ColumnName="FactuurID" />
           <ScalarProperty Name="ID" ColumnName="ID" />

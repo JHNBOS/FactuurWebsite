@@ -19,6 +19,7 @@
                     <asp:TableHeaderCell>Totaalbedrag</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Debiteur</asp:TableHeaderCell>
                     <asp:TableHeaderCell>Product(en)</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>Aantal</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
 

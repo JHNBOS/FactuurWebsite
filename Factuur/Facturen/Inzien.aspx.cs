@@ -36,11 +36,18 @@ namespace Factuur.Facturen
             List<factuur_items> fiList = db.factuur_items.Where(f => f.FactuurID == ID).ToList();
             List<producten> productList = new List<producten>();
             List<int> pidList = new List<int>();
+            List<int> aantalList = new List<int>();
 
             for (int i = 0; i < fiList.Count; i++)
             {
                 int productID = fiList[i].ProductID;
                 pidList.Add(productID);
+            }
+
+            for (int i = 0; i < fiList.Count; i++)
+            {
+                int aantal = fiList[i].Aantal;
+                aantalList.Add(aantal);
             }
 
             for (int i = 0; i < pidList.Count; i++)
@@ -56,6 +63,7 @@ namespace Factuur.Facturen
             TableCell cell2 = new TableCell();
             TableCell cell3 = new TableCell();
             TableCell cell4 = new TableCell();
+            TableCell cell5 = new TableCell();
 
             cell.Text = factuur.Factuurnummer.ToString();
             cell1.Text = String.Format("{0:dd-MM-yyyy}", factuur.Factuurdatum);
@@ -69,7 +77,15 @@ namespace Factuur.Facturen
                 products += productList[i].Naam + "<br />";
             }
 
+            string aantallen = "";
+
+            for (int i = 0; i < aantalList.Count; i++)
+            {
+                aantallen += aantalList[i] + "<br />";
+            }
+
             cell4.Text = products;
+            cell5.Text = aantallen;
 
             TableRow row = new TableRow();
 
@@ -78,6 +94,8 @@ namespace Factuur.Facturen
             row.Cells.Add(cell2);
             row.Cells.Add(cell3);
             row.Cells.Add(cell4);
+            row.Cells.Add(cell5);
+        
 
             factuurTable.Rows.Add(row);
 

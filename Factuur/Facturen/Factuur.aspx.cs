@@ -56,7 +56,7 @@ namespace Factuur.Facturen
                     Button export = new Button();
                     export.ID = "export_" + factuurlist[i].Factuurnummer.ToString();
                     export.Text = "Exporteer";
-                    export.CssClass = "btn btn-danger btn sm";
+                    export.CssClass = "btn btn-info btn-sm";
                     export.Click += Export_Click;
 
                     Button show = new Button();

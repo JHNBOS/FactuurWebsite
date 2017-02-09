@@ -37,11 +37,18 @@ namespace Factuur
             List<factuur_items> fiList = db.factuur_items.Where(f => f.FactuurID == ID).ToList();
             List<producten> productList = new List<producten>();
             List<int> pidList = new List<int>();
+            List<int> aantalList = new List<int>();
 
             for (int i = 0; i < fiList.Count; i++)
             {
                 int productID = fiList[i].ProductID;
                 pidList.Add(productID);
+            }
+
+            for (int i = 0; i < fiList.Count; i++)
+            {
+                int aantal = fiList[i].Aantal;
+                aantalList.Add(aantal);
             }
 
             for (int i = 0; i < pidList.Count; i++)
@@ -58,6 +65,7 @@ namespace Factuur
             TableCell cell2 = new TableCell();
             TableCell cell3 = new TableCell();
             TableCell cell4 = new TableCell();
+            TableCell cell5 = new TableCell();
 
             //Set debiteur naam and address label
             DebiteurNaamLabel.Text = deb.Voornaam + " " + deb.Achternaam;
@@ -79,11 +87,19 @@ namespace Factuur
             {
                 producten pr = productList[i];
 
+                string aantallen = "";
+
+                for (int j = 0; j < aantalList.Count; j++)
+                {
+                    aantallen += aantalList[j] + "<br />";
+                }
+
                 cell.Text = pr.Naam;
                 cell1.Text = String.Format("{0:C}", pr.Prijs);
                 cell2.Text = pr.BTW + "%";
                 cell3.Text = pr.Korting + "%";
-                cell4.Text = String.Format("{0:C}", factuur.Totaalbedrag);
+                cell4.Text = aantallen;
+                cell5.Text = String.Format("{0:C}", factuur.Totaalbedrag);
 
                 TableRow row = new TableRow();
 
@@ -92,16 +108,30 @@ namespace Factuur
                 row.Cells.Add(cell2);
                 row.Cells.Add(cell3);
                 row.Cells.Add(cell4);
+                row.Cells.Add(cell5);
 
                 FactuurTable.Rows.Add(row);
 
             }
 
+            FillTotal(productList, factuur);
+
         }
 
 
 
+        private void FillTotal(List<producten> products, facturen factuur) {
+            for (int i = 0; i < products.Count; i++)
+            {
+                producten pr = products[i];
 
+                decimal? subtotal = (decimal?)(factuur.Totaalbedrag * 100) / (100 + pr.BTW);
+                SubtotaalLabel.Text = "\t" + String.Format("{0:C}", subtotal);
+                BTWLabel.Text = "\t" + pr.BTW + "%";
+                TotaalLabel.Text = "\t" + String.Format("{0:C}", factuur.Totaalbedrag);
+            }
+           
+        }
 
 
     }
