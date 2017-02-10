@@ -1,9 +1,21 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.tool.xml.css;
+using iTextSharp.tool.xml.html;
+using iTextSharp.tool.xml.parser;
+using iTextSharp.tool.xml.pipeline.css;
+using iTextSharp.tool.xml.pipeline.end;
+using iTextSharp.tool.xml.pipeline.html;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.util.zlib;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.WebRequestMethods;
 
 namespace Factuur
 {
@@ -15,6 +27,8 @@ namespace Factuur
         {
             // Get ID debiteur
             string id = Session["Export"].ToString();
+
+            //Event handlers
 
             //Execute methods
             if (!IsPostBack)
@@ -126,13 +140,12 @@ namespace Factuur
                 producten pr = products[i];
 
                 decimal? subtotal = (decimal?)(factuur.Totaalbedrag * 100) / (100 + pr.BTW);
-                SubtotaalLabel.Text = "\t" + String.Format("{0:C}", subtotal);
-                BTWLabel.Text = "\t" + pr.BTW + "%";
-                TotaalLabel.Text = "\t" + String.Format("{0:C}", factuur.Totaalbedrag);
+                SubtotaalLabel.Text = String.Format("{0:C}", subtotal);
+                BTWLabel.Text = pr.BTW + "%";
+                TotaalLabel.Text = String.Format("{0:C}", factuur.Totaalbedrag);
             }
            
         }
-
 
     }
 }

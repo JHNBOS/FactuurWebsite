@@ -148,3 +148,15 @@ C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.MicrosoftAccount.xm
 C:\Github\FactuurWebsite\Factuur\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.dll
 C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.pdb
+C:\Github\FactuurWebsite\Factuur\obj\Debug\Factuur.csprojResolveAssemblyReference.cache
+C:\Github\FactuurWebsite\Factuur\bin\Spire.License.dll
+C:\Github\FactuurWebsite\Factuur\bin\Spire.Pdf.dll
+C:\Github\FactuurWebsite\Factuur\bin\Microsoft.mshtml.dll
+C:\Github\FactuurWebsite\Factuur\bin\Spire.License.xml
+C:\Github\FactuurWebsite\Factuur\bin\Spire.Pdf.xml
+C:\Github\FactuurWebsite\Factuur\bin\itextsharp.xmlworker.dll
+C:\Github\FactuurWebsite\Factuur\bin\HiQPdf.Free.dll
+C:\Github\FactuurWebsite\Factuur\bin\HiQPdf.Free.xml
+C:\Github\FactuurWebsite\Factuur\bin\HiQPdf.dep
+C:\Github\FactuurWebsite\Factuur\bin\Aspose.Pdf.dll
+C:\Github\FactuurWebsite\Factuur\bin\Aspose.Pdf.xml
