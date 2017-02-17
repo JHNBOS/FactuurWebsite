@@ -98,6 +98,7 @@ input[type="checkbox"]{
 
 #MainContent_FactuurDatumTable td{
     vertical-align: top;
+    padding-right: 10px;
 }
 
 .FactInfo{

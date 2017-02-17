@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="Factuur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Export.aspx.cs" Inherits="Factuur.Export" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
@@ -63,7 +62,7 @@
             var hiddenField = document.getElementById("<%=htmlText.ClientID%>");
             hiddenField.value = res;
 
-            var pdf = new jsPDF('p', 'pt', 'a3');
+            var pdf = new jsPDF('p', 'pt', 'a4');
 
             specialElementHandlers = {
                 // element with id of "bypass" - jQuery style selector
@@ -79,21 +78,16 @@
                 bottom: 0
             };
 
-            //source = document.getElementById("<%=htmlText.ClientID%>").innerHTML;
             var source = res;
 
             pdf.fromHTML(
-                source, // HTML string or DOM elem ref.
-                margins.left, // x coord
-                margins.top, { // y coord
-                    'width': pdf.internal.pageSize.width, // max width of content on PDF
-                    'height': pdf.internal.pageSize.height,
-                    'elementHandlers': specialElementHandlers
-                }, function () {
-                    //pdf.save('Test.pdf');
-                });
+                source
+            );
+            
+            setTimeout(function () {
+                pdf.save('Factuur.pdf');
+            }, 2500);
 
-            pdf.save('Factuur.pdf');
         }
     </script>
 </asp:Content>
